@@ -116,11 +116,17 @@ const editors: ILinuxExternalEditor[] = [
   },
   {
     name: 'IntelliJ IDEA Ultimate Edition',
-    paths: ['/snap/bin/intellij-idea-ultimate', '.local/share/JetBrains/Toolbox/scripts/intellij-idea-ultimate'],
+    paths: [
+      '/snap/bin/intellij-idea-ultimate',
+      '.local/share/JetBrains/Toolbox/scripts/intellij-idea-ultimate',
+    ],
   },
   {
     name: 'IntelliJ Goland',
-    paths: ['/snap/bin/goland', '.local/share/JetBrains/Toolbox/scripts/goland'],
+    paths: [
+      '/snap/bin/goland',
+      '.local/share/JetBrains/Toolbox/scripts/goland',
+    ],
   },
   {
     name: 'JetBrains PyCharm',
