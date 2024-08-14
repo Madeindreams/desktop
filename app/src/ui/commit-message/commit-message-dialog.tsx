@@ -55,6 +55,11 @@ interface ICommitMessageDialogProps {
 
   readonly showCommitLengthWarning: boolean
 
+  /**
+   * Whether to prefix the commit summary with the branch name.
+   */
+  readonly useBranchNameCommitPrefix: boolean
+
   /** Text for the ok button */
   readonly dialogButtonText: string
 
@@ -113,6 +118,16 @@ export class CommitMessageDialog extends React.Component<
   }
 
   public render() {
+    const { branch, commitMessage, useBranchNameCommitPrefix } = this.props
+    // Check if the branch name should be prefixed
+    let finalCommitMessage = commitMessage
+    if (branch && commitMessage && useBranchNameCommitPrefix) {
+      finalCommitMessage = {
+        ...commitMessage,
+        summary: `${branch} - ${commitMessage.summary}`
+      }
+    }
+
     return (
       <Dialog
         id="commit-message-dialog"
@@ -131,7 +146,7 @@ export class CommitMessageDialog extends React.Component<
             commitButtonText={this.props.dialogButtonText}
             commitToAmend={null}
             repository={this.props.repository}
-            commitMessage={this.props.commitMessage}
+            commitMessage={finalCommitMessage}
             focusCommitMessage={false}
             autocompletionProviders={this.props.autocompletionProviders}
             showCoAuthoredBy={this.state.showCoAuthoredBy}

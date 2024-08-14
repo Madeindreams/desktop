@@ -2324,6 +2324,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             commitMessage={popup.commitMessage}
             commitSpellcheckEnabled={this.state.commitSpellcheckEnabled}
             showCommitLengthWarning={this.state.showCommitLengthWarning}
+            useBranchNameCommitPrefix={this.state.useBranchNameCommitMessage}
             dialogButtonText={popup.dialogButtonText}
             dialogTitle={popup.dialogTitle}
             dispatcher={this.props.dispatcher}

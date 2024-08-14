@@ -238,6 +238,11 @@ export interface IAppState {
   /** Whether or not the app should show the commit length warning */
   readonly showCommitLengthWarning: boolean
 
+  /**
+   * Whether to prefix the commit summary with the branch name.
+   */
+  readonly useBranchNameCommitMessage: boolean
+
   /** The current setting for whether the user has disable usage reports */
   readonly optOutOfUsageTracking: boolean
   /**
