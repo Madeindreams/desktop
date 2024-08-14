@@ -78,6 +78,7 @@ interface ICommitMessageProps {
   readonly anyFilesSelected: boolean
   readonly isShowingModal: boolean
   readonly isShowingFoldout: boolean
+  readonly useBranchNameCommitPrefix: boolean
 
   /**
    * Whether it's possible to select files for commit, affects messaging
@@ -228,13 +229,20 @@ export class CommitMessage extends React.Component<
   private coAuthorInputRef = React.createRef<AuthorInput>()
 
   private readonly COMMIT_MSG_ERROR_BTN_ID = 'commit-message-failure-hint'
+  readonly useBranchNameCommitPrefix: boolean = true
 
   public constructor(props: ICommitMessageProps) {
     super(props)
-    const { commitMessage } = this.props
+    const { commitMessage, branch, useBranchNameCommitPrefix } = this.props
+
+    let summary = commitMessage ? commitMessage.summary : ''
+
+    if (branch && useBranchNameCommitPrefix && commitMessage) {
+      summary = `${branch} - ${summary}`
+    }
 
     this.state = {
-      summary: commitMessage ? commitMessage.summary : '',
+      summary,
       description: commitMessage ? commitMessage.description : null,
       commitMessageAutocompletionProviders:
         findCommitMessageAutoCompleteProvider(props.autocompletionProviders),

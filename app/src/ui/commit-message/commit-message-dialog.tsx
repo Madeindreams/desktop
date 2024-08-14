@@ -160,6 +160,7 @@ export class CommitMessageDialog extends React.Component<
             showNoWriteAccess={this.props.showNoWriteAccess}
             commitSpellcheckEnabled={this.props.commitSpellcheckEnabled}
             showCommitLengthWarning={this.props.showCommitLengthWarning}
+            useBranchNameCommitPrefix = {this.props.useBranchNameCommitPrefix}
             onCoAuthorsUpdated={this.onCoAuthorsUpdated}
             onShowCoAuthoredByChanged={this.onShowCoAuthorsChanged}
             onConfirmCommitWithUnknownCoAuthors={

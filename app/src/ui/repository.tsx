@@ -59,6 +59,8 @@ interface IRepositoryViewProps {
   readonly showCommitLengthWarning: boolean
   readonly accounts: ReadonlyArray<Account>
 
+  readonly useBranchNameCommitPrefix: boolean
+
   /**
    * A value indicating whether or not the application is currently presenting
    * a modal dialog such as the preferences, or an error dialog
@@ -250,6 +252,7 @@ export class RepositoryView extends React.Component<
         askForConfirmationOnDiscardChanges={
           this.props.askForConfirmationOnDiscardChanges
         }
+        useBranchNameCommitPrefix={this.props.useBranchNameCommitPrefix}
         accounts={this.props.accounts}
         isShowingModal={this.props.isShowingModal}
         isShowingFoldout={this.props.isShowingFoldout}

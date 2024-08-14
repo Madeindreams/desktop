@@ -85,6 +85,8 @@ interface IChangesSidebarProps {
   readonly commitSpellcheckEnabled: boolean
 
   readonly showCommitLengthWarning: boolean
+
+  readonly useBranchNameCommitPrefix: boolean
 }
 
 export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
@@ -442,6 +444,7 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
           shouldNudgeToCommit={this.props.shouldNudgeToCommit}
           commitSpellcheckEnabled={this.props.commitSpellcheckEnabled}
           showCommitLengthWarning={this.props.showCommitLengthWarning}
+          useBranchNameCommitPrefix={this.props.useBranchNameCommitPrefix}
           currentRepoRulesInfo={currentRepoRulesInfo}
           aheadBehind={this.props.aheadBehind}
           accounts={this.props.accounts}
