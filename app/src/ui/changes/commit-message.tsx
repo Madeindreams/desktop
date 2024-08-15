@@ -237,10 +237,12 @@ export class CommitMessage extends React.Component<
 
     let summary = commitMessage ? commitMessage.summary : ''
 
-    if (branch && useBranchNameCommitPrefix && commitMessage) {
-      summary = `${branch} - ${summary}`
+    // Check if the branch name is already prefixed in the summary
+    if (branch && useBranchNameCommitPrefix) {
+      const branchPrefix = `${branch} -`
+      // Add the branch name as a prefix before submitting
+      summary = `${branchPrefix}`
     }
-
     this.state = {
       summary,
       description: commitMessage ? commitMessage.description : null,
