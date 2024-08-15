@@ -167,6 +167,17 @@ export class Dispatcher {
   }
 
   /**
+   * Sets whether to use the branch name as a commit prefix.
+   *
+   * @param useBranchNameCommitPrefix - A flag indicating whether to use the branch name as a commit prefix. Set to true to use the branch name as a prefix, or false to not use it.
+   *
+   * @return void
+   */
+  public setUseBranchNameCommitPrefix(useBranchNameCommitPrefix: boolean): void {
+    this.appStore._setUseBranchNameCommitPrefix(useBranchNameCommitPrefix);
+  }
+
+  /**
    * Add a tutorial repository.
    *
    * This method differs from the `addRepositories` method in that it

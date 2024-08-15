@@ -410,6 +410,8 @@ const shellKey = 'shell'
 
 const repositoryIndicatorsEnabledKey = 'enable-repository-indicators'
 
+const useBranchNameCommitPrefixKey = 'use-branch-name-commit-prefix';
+
 // background fetching should occur hourly when Desktop is active, but this
 // lower interval ensures user interactions like switching repositories and
 // switching between apps does not result in excessive fetching in the app
@@ -584,6 +586,8 @@ export class AppStore extends TypedBaseStore<IAppState> {
 
   private underlineLinks: boolean = underlineLinksDefault
 
+  private useBranchNameCommitPrefix: boolean = false;
+
   public constructor(
     private readonly gitHubUserStore: GitHubUserStore,
     private readonly cloningRepositoriesStore: CloningRepositoriesStore,
@@ -598,6 +602,8 @@ export class AppStore extends TypedBaseStore<IAppState> {
     private readonly notificationsStore: NotificationsStore
   ) {
     super()
+
+    this.useBranchNameCommitPrefix = this.getUseBranchNameCommitPrefix();
 
     this.showWelcomeFlow = !hasShownWelcomeFlow()
 
@@ -2112,6 +2118,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
     this.currentBackgroundFetcher = fetcher
   }
 
+
   /** Load the initial state for the app. */
   public async loadInitialState() {
     const [accounts, repositories] = await Promise.all([
@@ -2277,6 +2284,14 @@ export class AppStore extends TypedBaseStore<IAppState> {
     this.showDiffCheckMarks = enableDiffCheckMarks()
       ? getBoolean(showDiffCheckMarksKey, showDiffCheckMarksDefault)
       : false
+
+    this.useBranchNameCommitPrefix = this.getUseBranchNameCommitPrefix();
+
+    // Use it somewhere in the code if necessary
+    if (this.useBranchNameCommitPrefix) {
+      log.info(`Using branch name as commit message prefix ${this.useBranchNameCommitPrefix}`)
+    }
+
 
     this.emitUpdateNow()
 
@@ -5062,6 +5077,20 @@ export class AppStore extends TypedBaseStore<IAppState> {
       return this.performFetch(repository, fetchType)
     })
   }
+  // This method sets the useBranchNameCommitPrefix setting and saves it in local storage.
+  public _setUseBranchNameCommitPrefix(useBranchNameCommitPrefix: boolean): void {
+    // Save the setting in local storage
+    setBoolean(useBranchNameCommitPrefixKey, useBranchNameCommitPrefix);
+
+    // Update the app state with the new value
+    this.emitUpdate();
+  }
+
+  // If you need to retrieve the setting, you can create a method like this:
+  public getUseBranchNameCommitPrefix(): boolean {
+    return getBoolean(useBranchNameCommitPrefixKey) ?? false;
+  }
+
 
   /**
    * Fetch a particular remote in a repository.

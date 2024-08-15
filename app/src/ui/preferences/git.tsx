@@ -16,6 +16,9 @@ interface IGitProps {
   readonly dotComAccount: Account | null
   readonly enterpriseAccount: Account | null
 
+  readonly useBranchNameCommitPrefix: boolean
+  readonly onUseBranchNameCommitPrefixChanged: (value: boolean) => void
+
   readonly onNameChanged: (name: string) => void
   readonly onEmailChanged: (email: string) => void
   readonly onDefaultBranchChanged: (defaultBranch: string) => void
@@ -69,6 +72,17 @@ export class Git extends React.Component<IGitProps> {
           still require the historical default branch name of <Ref>master</Ref>.
         </p>
 
+        <div className="git-settings-description">
+          <label>
+            <input
+              type="checkbox"
+              checked={this.props.useBranchNameCommitPrefix}
+              onChange={this.onUseBranchNameCommitPrefixChange}
+            />
+            Prefix commit message with branch name
+          </label>
+        </div>
+
         <p className="git-settings-description">
           These preferences will{' '}
           {this.props.selectedExternalEditor &&
@@ -83,6 +97,13 @@ export class Git extends React.Component<IGitProps> {
         </p>
       </div>
     )
+  }
+
+  // check if we prefix the commit message with the branch name
+  private onUseBranchNameCommitPrefixChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    this.props.onUseBranchNameCommitPrefixChanged(event.target.checked)
   }
 
   // This function is called to open the global git config file in the

@@ -1766,6 +1766,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             onOpenFileInExternalEditor={this.openFileInExternalEditor}
             underlineLinks={this.state.underlineLinks}
             showDiffCheckMarks={this.state.showDiffCheckMarks}
+            useBranchNameCommitPrefix={this.state.useBranchNameCommitMessage}
           />
         )
       case PopupType.RepositorySettings: {
