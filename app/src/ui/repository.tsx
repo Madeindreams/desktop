@@ -58,8 +58,7 @@ interface IRepositoryViewProps {
   readonly commitSpellcheckEnabled: boolean
   readonly showCommitLengthWarning: boolean
   readonly accounts: ReadonlyArray<Account>
-
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 
   /**
    * A value indicating whether or not the application is currently presenting
@@ -252,7 +251,7 @@ export class RepositoryView extends React.Component<
         askForConfirmationOnDiscardChanges={
           this.props.askForConfirmationOnDiscardChanges
         }
-        useBranchNameCommitPrefix={this.props.useBranchNameCommitPrefix}
+        useBranchNameSummaryPrefix={this.props.useBranchNameSummaryPrefix}
         accounts={this.props.accounts}
         isShowingModal={this.props.isShowingModal}
         isShowingFoldout={this.props.isShowingFoldout}

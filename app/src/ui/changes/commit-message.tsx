@@ -78,7 +78,7 @@ interface ICommitMessageProps {
   readonly anyFilesSelected: boolean
   readonly isShowingModal: boolean
   readonly isShowingFoldout: boolean
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 
   /**
    * Whether it's possible to select files for commit, affects messaging
@@ -229,16 +229,16 @@ export class CommitMessage extends React.Component<
   private coAuthorInputRef = React.createRef<AuthorInput>()
 
   private readonly COMMIT_MSG_ERROR_BTN_ID = 'commit-message-failure-hint'
-  readonly useBranchNameCommitPrefix: boolean = true
+  readonly useBranchNameSummaryPrefix: boolean = true
 
   public constructor(props: ICommitMessageProps) {
     super(props)
-    const { commitMessage, branch, useBranchNameCommitPrefix } = this.props
+    const { commitMessage, branch, useBranchNameSummaryPrefix } = this.props
 
     let summary = commitMessage ? commitMessage.summary : ''
 
     // Check if the branch name is already prefixed in the summary
-    if (branch && useBranchNameCommitPrefix) {
+    if (branch && useBranchNameSummaryPrefix) {
       const branchPrefix = `${branch} -`
       // Add the branch name as a prefix before submitting
       summary = `${branchPrefix}`

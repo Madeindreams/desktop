@@ -241,7 +241,7 @@ export interface IAppState {
   /**
    * Whether to prefix the commit summary with the branch name.
    */
-  readonly useBranchNameCommitMessage: boolean
+  readonly useBranchNameSummaryMessage: boolean
 
   /** The current setting for whether the user has disable usage reports */
   readonly optOutOfUsageTracking: boolean

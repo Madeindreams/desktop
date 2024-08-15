@@ -1766,7 +1766,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             onOpenFileInExternalEditor={this.openFileInExternalEditor}
             underlineLinks={this.state.underlineLinks}
             showDiffCheckMarks={this.state.showDiffCheckMarks}
-            useBranchNameCommitPrefix={this.state.useBranchNameCommitMessage}
+            useBranchNameSummaryPrefix={this.state.useBranchNameSummaryMessage}
           />
         )
       case PopupType.RepositorySettings: {
@@ -2325,7 +2325,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             commitMessage={popup.commitMessage}
             commitSpellcheckEnabled={this.state.commitSpellcheckEnabled}
             showCommitLengthWarning={this.state.showCommitLengthWarning}
-            useBranchNameCommitPrefix={this.state.useBranchNameCommitMessage}
+            useBranchNameSummaryPrefix={this.state.useBranchNameSummaryMessage}
             dialogButtonText={popup.dialogButtonText}
             dialogTitle={popup.dialogTitle}
             dispatcher={this.props.dispatcher}
@@ -3430,7 +3430,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           aheadBehindStore={this.props.aheadBehindStore}
           commitSpellcheckEnabled={this.state.commitSpellcheckEnabled}
           showCommitLengthWarning={this.state.showCommitLengthWarning}
-          useBranchNameCommitPrefix={this.state.useBranchNameCommitMessage}
+          useBranchNameSummaryPrefix={this.state.useBranchNameSummaryMessage}
           onCherryPick={this.startCherryPickWithoutBranch}
           pullRequestSuggestedNextAction={state.pullRequestSuggestedNextAction}
         />

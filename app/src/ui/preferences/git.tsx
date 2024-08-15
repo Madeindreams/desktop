@@ -16,8 +16,8 @@ interface IGitProps {
   readonly dotComAccount: Account | null
   readonly enterpriseAccount: Account | null
 
-  readonly useBranchNameCommitPrefix: boolean
-  readonly onUseBranchNameCommitPrefixChanged: (value: boolean) => void
+  readonly useBranchNameSummaryPrefix: boolean
+  readonly onUseBranchNameSummaryPrefixChanged: (value: boolean) => void
 
   readonly onNameChanged: (name: string) => void
   readonly onEmailChanged: (email: string) => void
@@ -76,8 +76,8 @@ export class Git extends React.Component<IGitProps> {
           <label>
             <input
               type="checkbox"
-              checked={this.props.useBranchNameCommitPrefix}
-              onChange={this.onUseBranchNameCommitPrefixChange}
+              checked={this.props.useBranchNameSummaryPrefix}
+              onChange={this.onUseBranchNameSummaryPrefixChange}
             />
             Prefix commit message with branch name
           </label>
@@ -100,10 +100,10 @@ export class Git extends React.Component<IGitProps> {
   }
 
   // check if we prefix the commit message with the branch name
-  private onUseBranchNameCommitPrefixChange = (
+  private onUseBranchNameSummaryPrefixChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    this.props.onUseBranchNameCommitPrefixChanged(event.target.checked)
+    this.props.onUseBranchNameSummaryPrefixChanged(event.target.checked)
   }
 
   // This function is called to open the global git config file in the

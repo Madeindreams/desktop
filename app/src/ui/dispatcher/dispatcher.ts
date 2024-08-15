@@ -173,8 +173,8 @@ export class Dispatcher {
    *
    * @return void
    */
-  public setUseBranchNameCommitPrefix(useBranchNameCommitPrefix: boolean): void {
-    this.appStore._setUseBranchNameCommitPrefix(useBranchNameCommitPrefix);
+  public setUseBranchNameSummaryPrefix(useBranchNameSummaryPrefix: boolean): void {
+    this.appStore._setUseBranchNameSummaryPrefix(useBranchNameSummaryPrefix);
   }
 
   /**

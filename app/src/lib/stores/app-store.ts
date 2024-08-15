@@ -410,7 +410,7 @@ const shellKey = 'shell'
 
 const repositoryIndicatorsEnabledKey = 'enable-repository-indicators'
 
-const useBranchNameCommitPrefixKey = 'use-branch-name-commit-prefix';
+const useBranchNameSummaryPrefixKey = 'use-branch-name-Summary-prefix';
 
 // background fetching should occur hourly when Desktop is active, but this
 // lower interval ensures user interactions like switching repositories and
@@ -586,7 +586,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
 
   private underlineLinks: boolean = underlineLinksDefault
 
-  private useBranchNameCommitPrefix: boolean = false;
+  private useBranchNameSummaryPrefix: boolean = false;
 
   public constructor(
     private readonly gitHubUserStore: GitHubUserStore,
@@ -603,7 +603,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
   ) {
     super()
 
-    this.useBranchNameCommitPrefix = this.getUseBranchNameCommitPrefix();
+    this.useBranchNameSummaryPrefix = this.getUseBranchNameSummaryPrefix();
 
     this.showWelcomeFlow = !hasShownWelcomeFlow()
 
@@ -1079,7 +1079,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
       cachedRepoRulesets: this.cachedRepoRulesets,
       underlineLinks: this.underlineLinks,
       showDiffCheckMarks: this.showDiffCheckMarks,
-      useBranchNameCommitMessage: true,
+      useBranchNameSummaryMessage: true,
     }
   }
 
@@ -2285,11 +2285,11 @@ export class AppStore extends TypedBaseStore<IAppState> {
       ? getBoolean(showDiffCheckMarksKey, showDiffCheckMarksDefault)
       : false
 
-    this.useBranchNameCommitPrefix = this.getUseBranchNameCommitPrefix();
+    this.useBranchNameSummaryPrefix = this.getUseBranchNameSummaryPrefix();
 
     // Use it somewhere in the code if necessary
-    if (this.useBranchNameCommitPrefix) {
-      log.info(`Using branch name as commit message prefix ${this.useBranchNameCommitPrefix}`)
+    if (this.useBranchNameSummaryPrefix) {
+      log.info(`Using branch name as commit message prefix ${this.useBranchNameSummaryPrefix}`)
     }
 
 
@@ -5078,19 +5078,17 @@ export class AppStore extends TypedBaseStore<IAppState> {
     })
   }
   // This method sets the useBranchNameCommitPrefix setting and saves it in local storage.
-  public _setUseBranchNameCommitPrefix(useBranchNameCommitPrefix: boolean): void {
+  public _setUseBranchNameSummaryPrefix(useBranchNameSummaryPrefix: boolean): void {
     // Save the setting in local storage
-    setBoolean(useBranchNameCommitPrefixKey, useBranchNameCommitPrefix);
+    setBoolean(useBranchNameSummaryPrefixKey, useBranchNameSummaryPrefix);
 
     // Update the app state with the new value
     this.emitUpdate();
   }
 
-  // If you need to retrieve the setting, you can create a method like this:
-  public getUseBranchNameCommitPrefix(): boolean {
-    return getBoolean(useBranchNameCommitPrefixKey) ?? false;
+  public getUseBranchNameSummaryPrefix(): boolean {
+    return getBoolean(useBranchNameSummaryPrefixKey) ?? false;
   }
-
 
   /**
    * Fetch a particular remote in a repository.

@@ -223,7 +223,7 @@ interface IChangesListProps {
 
   readonly showCommitLengthWarning: boolean
 
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 
   readonly accounts: ReadonlyArray<Account>
 }
@@ -850,7 +850,7 @@ export class ChangesList extends React.Component<
         shouldNudge={this.props.shouldNudgeToCommit}
         commitSpellcheckEnabled={this.props.commitSpellcheckEnabled}
         showCommitLengthWarning={this.props.showCommitLengthWarning}
-        useBranchNameCommitPrefix={this.props.useBranchNameCommitPrefix}
+        useBranchNameSummaryPrefix={this.props.useBranchNameSummaryPrefix}
         onCoAuthorsUpdated={this.onCoAuthorsUpdated}
         onShowCoAuthoredByChanged={this.onShowCoAuthoredByChanged}
         onConfirmCommitWithUnknownCoAuthors={

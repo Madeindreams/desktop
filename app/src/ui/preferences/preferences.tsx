@@ -85,7 +85,7 @@ interface IPreferencesProps {
   readonly onOpenFileInExternalEditor: (path: string) => void
   readonly underlineLinks: boolean
   readonly showDiffCheckMarks: boolean
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 }
 
 interface IPreferencesState {
@@ -118,7 +118,7 @@ interface IPreferencesState {
   readonly selectedExternalEditor: string | null
   readonly availableShells: ReadonlyArray<Shell>
   readonly selectedShell: Shell
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 
   /**
    * If unable to save Git configuration values (name, email)
@@ -196,12 +196,12 @@ export class Preferences extends React.Component<
       globalGitConfigPath: null,
       underlineLinks: this.props.underlineLinks,
       showDiffCheckMarks: this.props.showDiffCheckMarks,
-      useBranchNameCommitPrefix: this.props.useBranchNameCommitPrefix,
+      useBranchNameSummaryPrefix: this.props.useBranchNameSummaryPrefix,
     }
   }
 
-  private onUseBranchNameCommitPrefixChanged = (useBranchNameCommitPrefix: boolean) => {
-    this.setState({ useBranchNameCommitPrefix })
+  private onUseBranchNameSummaryPrefixChanged = (useBranchNameSummaryPrefix: boolean) => {
+    this.setState({ useBranchNameSummaryPrefix })
   }
 
   public async componentWillMount() {
@@ -459,8 +459,8 @@ export class Preferences extends React.Component<
               onNameChanged={this.onCommitterNameChanged}
               onEmailChanged={this.onCommitterEmailChanged}
               onDefaultBranchChanged={this.onDefaultBranchChanged}
-              useBranchNameCommitPrefix={this.state.useBranchNameCommitPrefix}
-              onUseBranchNameCommitPrefixChanged={this.onUseBranchNameCommitPrefixChanged}
+              useBranchNameSummaryPrefix={this.state.useBranchNameSummaryPrefix}
+              onUseBranchNameSummaryPrefixChanged={this.onUseBranchNameSummaryPrefixChanged}
               isLoadingGitConfig={this.state.isLoadingGitConfig}
               selectedExternalEditor={this.props.selectedExternalEditor}
               onOpenFileInExternalEditor={this.props.onOpenFileInExternalEditor}
@@ -750,7 +750,7 @@ export class Preferences extends React.Component<
         )
       }
 
-      dispatcher.setUseBranchNameCommitPrefix(this.state.useBranchNameCommitPrefix);
+      dispatcher.setUseBranchNameSummaryPrefix(this.state.useBranchNameSummaryPrefix);
     } catch (e) {
       if (isConfigFileLockError(e)) {
         const lockFilePath = parseConfigLockFilePathFromError(e.result)

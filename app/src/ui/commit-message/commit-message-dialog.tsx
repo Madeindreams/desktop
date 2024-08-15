@@ -58,7 +58,7 @@ interface ICommitMessageDialogProps {
   /**
    * Whether to prefix the commit summary with the branch name.
    */
-  readonly useBranchNameCommitPrefix: boolean
+  readonly useBranchNameSummaryPrefix: boolean
 
   /** Text for the ok button */
   readonly dialogButtonText: string
@@ -118,10 +118,10 @@ export class CommitMessageDialog extends React.Component<
   }
 
   public render() {
-    const { branch, commitMessage, useBranchNameCommitPrefix } = this.props
+    const { branch, commitMessage, useBranchNameSummaryPrefix } = this.props
     // Check if the branch name should be prefixed
     let finalCommitMessage = commitMessage
-    if (branch && commitMessage && useBranchNameCommitPrefix) {
+    if (branch && commitMessage && useBranchNameSummaryPrefix) {
       finalCommitMessage = {
         ...commitMessage,
         summary: `${branch} - ${commitMessage.summary}`
@@ -160,7 +160,7 @@ export class CommitMessageDialog extends React.Component<
             showNoWriteAccess={this.props.showNoWriteAccess}
             commitSpellcheckEnabled={this.props.commitSpellcheckEnabled}
             showCommitLengthWarning={this.props.showCommitLengthWarning}
-            useBranchNameCommitPrefix = {this.props.useBranchNameCommitPrefix}
+            useBranchNameSummaryPrefix = {this.props.useBranchNameSummaryPrefix}
             onCoAuthorsUpdated={this.onCoAuthorsUpdated}
             onShowCoAuthoredByChanged={this.onShowCoAuthorsChanged}
             onConfirmCommitWithUnknownCoAuthors={
